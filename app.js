@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const passport = require('passport')
 // const cors = require('cors')
 // const morgan = require('morgan')
 const authRoutes = require('./routes/auth')
@@ -15,6 +16,9 @@ const app = express()
 mongoose.connect(keys.mongoURI)
     .then(() => console.log('MongoDB is connected'))
     .catch(error => console.log(error))
+
+app.use(passport.initialize())
+require('./middleware/passport')(passport)
 
 app.use(require('morgan')('dev'))
 app.use(bodyParser.urlencoded({extended: true}))
@@ -36,5 +40,14 @@ module.exports = app
 //npm install cors morgan
 //npm i mongoose
 
+// in mongoDb fullstack username: tanya, password: 2hPozSWemopmmYgj
+//mongo "mongodb+srv://cluster0.48cwp.mongodb.net/myFirstDatabase" --username tanya
+
+
 // in mongoDb MEAN DB username: tatyana, password: opdc13QVUWkKditb
 //mongo "mongodb+srv://cluster0.lu1mx.mongodb.net/myFirstDatabase" --username tatyana
+
+//npm i bcryptjs - for password encoding
+//npm install jsonwebtoken
+
+//npm install passport passport-jwt
