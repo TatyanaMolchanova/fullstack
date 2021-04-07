@@ -13,7 +13,17 @@ const keys = require('./config/keys')
 const app = express()
 
 // mongoose.connect(keys.mongoURI, { useNewUrlParser: true,  useUnifiedTopology: true })
-mongoose.connect(keys.mongoURI)
+
+// mongoose.set('useNewUrlParser', true);
+// mongoose.set('useFindAndModify', false);
+// mongoose.set('useCreateIndex', true);
+// mongoose.set('useUnifiedTopology', true);
+mongoose.connect(keys.mongoURI, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+})
     .then(() => console.log('MongoDB is connected'))
     .catch(error => console.log(error))
 
@@ -21,6 +31,7 @@ app.use(passport.initialize())
 require('./middleware/passport')(passport)
 
 app.use(require('morgan')('dev'))
+app.use('/uploads', express.static('uploads')) // it gives direct access to pictures
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(require('cors')())
@@ -51,3 +62,5 @@ module.exports = app
 //npm install jsonwebtoken
 
 //npm install passport passport-jwt
+
+//npm install multer moment - for file uploading

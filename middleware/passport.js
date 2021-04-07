@@ -19,6 +19,7 @@ module.exports = passport => {
                 if (user) {
                     done(null, user)
                 } else {
+                    // done(null, false, {message: 'Incorrect username'})
                     done(null, false)
                 }
             } catch (err) {

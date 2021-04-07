@@ -10,7 +10,7 @@ module.exports.login = async function(req, res) {
 
     if (candidate) {
         // password check, if user exists
-        const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
+        const passwordResult = await bcrypt.compareSync(req.body.password, candidate.password)
         if (passwordResult) {
             // token generation, passwords are identical
             const token = jwt.sign({
