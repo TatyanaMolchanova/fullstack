@@ -8,3 +8,7 @@ Frontend
 
 /api/auth/login
 /api/category
+
+Proxy is needed in case if we change port or domain on backend not to change absolute path everywhere on frontend.
+For this purpose proxy is used in file proxy.conf.json - we point the URL-address in 1 place and if it will be
+changed on backend, we just change code in 1 place (proxy) and that's it!
