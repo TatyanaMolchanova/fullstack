@@ -50,13 +50,14 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.form.disable()
 
     this.aSub = this.auth.login(this.form.value).subscribe(
-      // () => console.log('Login success'),
-      () => this.router.navigate(['/overview']),
+      () => console.log('Login success'),
+      // () => this.router.navigate(['/overview']),
       error => {
         console.warn(error)
         this.form.enable()
       }
     )
+    this.form.enable()
   }
 
 }
