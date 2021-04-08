@@ -7,7 +7,10 @@ module.exports.getByCategoryID = async function(req, res) {
             category: req.params.categoryId,
             user: req.user.id
         })
-        res.status(200).json(positions)
+        // check loader if is working
+        // setTimeout(() => {
+            res.status(200).json(positions)
+        // }, 2000)
     } catch (err) {
         errorHandler(res, err)
     }
