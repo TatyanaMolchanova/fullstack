@@ -6,10 +6,10 @@ module.exports.getAll = async function(req, res) {
     // res.json({message: 'Categories'})
     try {
         const categories = await Category.find({user: req.user.id})
-        setTimeout(() => {
+        // setTimeout(() => {
             res.status(200).json(categories)
             // res.status(200).json([]) //for checking if array of categories is empty
-        }, 3000)
+        // }, 3000)
     } catch (err) {
         errorHandler(res, err)
     }
@@ -18,7 +18,9 @@ module.exports.getAll = async function(req, res) {
 module.exports.getById = async function(req, res) {
     try {
         const category = await Category.findById(req.params.id)
-        res.status(200).json(category)
+        // setTimeout(() => {
+            res.status(200).json(category)
+        // }, 2000)
     } catch (err) {
         errorHandler(res, err)
     }
