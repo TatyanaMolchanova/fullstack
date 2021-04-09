@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     })
 
     this.route.queryParams.subscribe((params: Params) => {
-      console.log('params', params)
+      // console.log('params', params)
       if (params['registered']) {
         //Now you can enter to system with your data
         MaterialService.toast('Now you can enter to system with your data')
