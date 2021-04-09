@@ -19,7 +19,7 @@
             {{position.name}} <strong>{{position.cost}} руб.</strong>
         </span>
           <span>
-            <i class="material-icons">delete</i>
+            <i class="material-icons" (click)="onDeletePosition($event, position)">delete</i>
         </span>
         </a>
       </div>
@@ -33,24 +33,49 @@
   </div>
 </div>
 
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div #modal class="modal">
+    <div class="modal-content">
+      <h4 class="mb1">Добавить позицию</h4>
+      <div class="input-field">
+        <input
+          formControlName="name"
+          [ngClass]="{'invalid': form.get('name')?.invalid && form.get('name')?.touched}"
+          id="pos-name"
+          type="text">
+        <label for="pos-name">Название</label>
+        <span
+          *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
+          class="helper-text red-text">
+          Название не должно быть пустым
+        </span>
+      </div>
+      <div class="input-field">
+        <input
+          min="1"
+          formControlName="cost"
+          [ngClass]="{'invalid': form.get('cost')?.invalid && form.get('cost')?.touched}"
+          id="pos-cost"
+          type="number">
+        <label for="pos-cost">Цена</label>
+        <span
+          *ngIf="form.get('cost')?.invalid && form.get('cost')?.touched"
+          class="helper-text red-text">
+          Введите корректную цену. Минимальное значение 1
+        </span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        (click)="onCancel()"
+        [disabled]="form.disabled"
+        class="modal-action waves-effect waves-black btn-flat">Отмена</button>
+      <button
+        type="submit"
+        [disabled]="form.invalid || form.disabled"
+        class="modal-action btn waves-effect">Сохранить</button>
+    </div>
+  </div>
+</form>
 
-<div #modal class="modal">
-  <div class="modal-content">
-    <h4 class="mb1">Добавить позицию</h4>
-    <div class="input-field">
-      <input id="pos-name" type="text" required>
-      <label for="pos-name">Название</label>
-    </div>
-    <div class="input-field">
-      <input id="pos-cost" type="text" required>
-      <label for="pos-cost">Цена</label>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      (click)="onCancel()"
-      class="modal-action waves-effect waves-black btn-flat">Отмена</button>
-    <button class="modal-action btn waves-effect">Сохранить</button>
-  </div>
-</div>
