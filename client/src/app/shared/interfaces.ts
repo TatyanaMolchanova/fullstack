@@ -1,3 +1,5 @@
+import {ChartConfiguration} from "chart.js";
+
 export interface User {
   email: string
   password: string
@@ -68,8 +70,10 @@ export interface AnalyticsChartItem {
 }
 
 export interface ChartConfig {
-  type: 'line'
+  type: string
   labels: string[]
+  // labels: string
+  // data: number
   data: number[]
   label: string
   color: string
