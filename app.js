@@ -43,7 +43,7 @@ app.use('/api/category', categoryRoutes)
 app.use('/api/order', orderRoutes)
 app.use('/api/position', positionRoutes)
 
-// Готовим сервер к деплою start
+// Готовим сервер к деплою
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/dist/client'))
 
